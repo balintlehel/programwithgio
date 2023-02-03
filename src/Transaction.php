@@ -4,13 +4,10 @@ declare(strict_types=1);
 
 class Transaction
 {
-    private float $amount;
-    private string $description;
-
-    public function __construct(float $amount, string $description)
-    {
-        $this->amount = $amount;
-        $this->description = $description;
+    public function __construct(
+        private float $amount,
+        private string $description
+    ){
     }
 
     public function addTax(float $rate): Transaction
