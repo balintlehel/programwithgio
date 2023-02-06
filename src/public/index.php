@@ -1,29 +1,18 @@
 <?php
 
-require_once '../Transaction.php';
+require_once '../PaymentGateway/Paddle/Transaction.php';
+require_once '../Notification/Email.php';
+require_once '../PaymentGateway/Stripe/Transaction.php';
+require_once '../PaymentGateway/Paddle/CustomerProfile.php';
 
-//Classes and Objects
+//use with grouping
+    //use PaymentGateway\Paddle\{Transaction, CustomerProfile};
+//import the namespace
+use PaymentGateway\Paddle as Paddle;
+use PaymentGateway\Stripe\Transaction as StripeTransaction;
 
-//Before method chaining
-//$transaction = new Transaction(100, 'asadasdasdas');
-//
-//$transaction->addTax(8);
-//$transaction->applyDiscount(10);
-//var_dump($transaction->getAmount());
+$paddleTransaction = new Paddle\Transaction();
+$stripeTransaction = new StripeTransaction();
+$customerProfile = new Paddle\CustomerProfile();
 
-
-//After method chaining
-$amount = (new Transaction(100, 'Transaction 1'))
-    ->addTax(8)
-    ->applyDiscount(10)
-    ->getAmount();
-
-var_dump($amount);
-
-echo '<br>';
-
-$transaction = (new Transaction(100, 'Transaction 2'))
-    ->addTax(8)
-    ->applyDiscount(10);
-
-var_dump($transaction->getAmount());
+var_dump($paddleTransaction, $stripeTransaction);
